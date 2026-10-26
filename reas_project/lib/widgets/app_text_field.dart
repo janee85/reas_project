@@ -8,6 +8,9 @@ class AppTextField extends StatelessWidget {
   final bool obscureText;
   final Widget? suffixIcon;
 
+  // Add this validator parameter
+  final String? Function(String?)? validator;
+
   const AppTextField({
     super.key,
     required this.label,
@@ -15,20 +18,20 @@ class AppTextField extends StatelessWidget {
     required this.controller,
     this.obscureText = false,
     this.suffixIcon,
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: controller,
       obscureText: obscureText,
+      validator: validator,
       decoration: InputDecoration(
         labelText: label,
         prefixIcon: Icon(icon),
         suffixIcon: suffixIcon,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        border: const OutlineInputBorder(),
       ),
     );
   }

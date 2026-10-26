@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
+import 'report_form_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -27,6 +28,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -40,10 +42,38 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
+
             const Text(
               'Customer Purchase Record System Dashboard',
               style: TextStyle(color: Colors.grey),
             ),
+            const SizedBox(height: 20),
+
+            // CREATE REPORT BUTTON
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const ReportFormScreen(),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.add_circle_outline),
+                label: const Text('Create Purchase Report'),
+                style: FilledButton.styleFrom(
+                  backgroundColor: const Color(0xFF176B87),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                  ),
+                ),
+              ),
+            ),
+
             const SizedBox(height: 28),
 
             const Text(
@@ -63,10 +93,12 @@ class HomeScreen extends StatelessWidget {
                 return GridView.count(
                   crossAxisCount: columns,
                   shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
+                  physics:
+                      const NeverScrollableScrollPhysics(),
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
-                  childAspectRatio: columns == 1 ? 3 : 1.2,
+                  childAspectRatio:
+                      columns == 1 ? 3 : 1.2,
                   children: const [
                     SummaryCard(
                       title: 'Total Customers',
@@ -92,6 +124,7 @@ class HomeScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 28),
+
             const Text(
               'Recent Purchases',
               style: TextStyle(
@@ -135,6 +168,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// SUMMARY CARD
 class SummaryCard extends StatelessWidget {
   final String title;
   final String value;
@@ -158,14 +192,15 @@ class SummaryCard extends StatelessWidget {
         child: Row(
           children: [
             CircleAvatar(
-              backgroundColor: color.withOpacity(0.12),
+              backgroundColor: color.withValues(alpha: 0.12),
               child: Icon(icon, color: color),
             ),
             const SizedBox(width: 14),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment:
+                    CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
@@ -192,6 +227,7 @@ class SummaryCard extends StatelessWidget {
   }
 }
 
+// PURCHASE TILE
 class PurchaseTile extends StatelessWidget {
   final String name;
   final String item;
@@ -214,7 +250,9 @@ class PurchaseTile extends StatelessWidget {
       ),
       title: Text(
         name,
-        style: const TextStyle(fontWeight: FontWeight.w600),
+        style: const TextStyle(
+          fontWeight: FontWeight.w600,
+        ),
       ),
       subtitle: Text('$item\n$date'),
       isThreeLine: true,

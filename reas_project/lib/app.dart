@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'screens/login_screen.dart';
+import 'screens/report_form_screen.dart';
 
 class CustomerPurchaseApp extends StatelessWidget {
   const CustomerPurchaseApp({super.key});
@@ -10,6 +11,7 @@ class CustomerPurchaseApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Customer Purchase Record System',
+
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
@@ -17,6 +19,13 @@ class CustomerPurchaseApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: const Color(0xFFF5F7FA),
       ),
+
+      // Routes for navigating between screens
+      routes: {
+        '/report': (context) => const ReportFormScreen(),
+      },
+
+      // Initial screen
       home: const LoginScreen(),
     );
   }
